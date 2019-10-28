@@ -1,0 +1,61 @@
+#provide the path to the ligand file with coordinates
+ligand_file: database.smi 
+
+#The ligand file contains multiple ligands. Choose the indices of the ligands
+#between which we should compute a relative free energy
+old_ligand_index: 0 
+new_ligand_index: 5
+
+#Provide the list of forcefield files. Non-standard files should
+#be provided with a full path
+forcefield_files:
+    - gaff.xml
+    - amber14/tip3p.xml
+
+#the temperature and pressure of the simulation, as well as how much solvent paddding to add
+#units:
+#pressure: atm
+#temperature: Kelvin
+#padding: angstroms
+pressure: 1.0
+temperature: 300.0
+solvent_padding: 9.0
+
+#number of equilibrium steps per move application
+n_steps_per_move_application: 500 
+
+#The name of the pickle file where we will save the setup object
+save_setup_pickle_as: fesetup_hbonds.pkl
+
+#the type of free energy calculation.
+#currently, this could be either nonequilibrium or sams
+fe_type: repex 
+
+#checkpoint interval in iterations:
+checkpoint_interval: 50 
+
+#number of iterations
+n_cycles: 500
+
+#The number of SAMS states
+n_states: 10 
+
+#the number of equilibration iterations:
+n_equilibration_iterations: 0
+
+#where to put the trajectories
+trajectory_directory: lig0to5
+
+#how to prefix the trajectory files (project-specific name)
+trajectory_prefix: out 
+
+#which atoms to save (MDTraj selection syntax)
+atom_selection: not water 
+
+#which phases do we want to run. Any combination or number of complex, solvent or vacuum will be accepted 
+phases:
+    - solvent
+    - vacuum
+
+#timestep in fs
+timestep: 4.0
